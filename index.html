@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Las - Trening Medyczny w Lesie pod Warszawą</title>
+    <meta name="description" content="Pomagam ludziom 30+ i 40+ wyjść z bólu różnoźroną pracą ruchową. Kameralne studio treningowe w lesie pod Warszawą.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Studio Las</a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="#for-whom">Czy to dla Ciebie?</a></li>
+                <li><a href="#process">Jak pracuję</a></li>
+                <li><a href="booking.html">Umów konsultację</a></li>
+                <li><a href="profile.html">👤 Profil</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Pomagam ludziom 30+ i 40+ wyjść z bólu różnoźroną pracą ruchową</h1>
+                <p>Kameralne studio treningowe w lesie pod Warszawą. Bez tłumu, bez luster, bez presji.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="openModal()">Ankieta diagnostyczna</button>
+                    <a href="booking.html" class="btn btn-secondary">Umów konsultację</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div><strong>Studio w lesie</strong><br>Prace Duże, pod Warszawą</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="for-whom">
+        <h2 class="section-title">Czy to dla Ciebie?</h2>
+        <div class="target-grid">
+            <div class="target-card">
+                <h3>Boli Cię kręgosłup po pracy</h3>
+                <p>Siedzisz 8h dziennie. Plecy bolą wieczorem, rano czujesz sztywność.</p>
+            </div>
+            <div class="target-card">
+                <h3>Po kontuzji lub operacji</h3>
+                <p>Rehabilitacja skończyła się, ale nie masz siły i boisz się ruchu.</p>
+            </div>
+            <div class="target-card">
+                <h3>Wracasz do sportu</h3>
+                <p>Chcesz biegać, jeździć na nartach – ale obawiasz się kontuzji.</p>
+            </div>
+            <div class="target-card">
+                <h3>Po ciąży i porodzie</h3>
+                <p>Twoje ciało przeszło ogromną zmianę. Chcesz wrócić do formy bezpiecznie.</p>
+            </div>
+            <div class="target-card">
+                <h3>Lęk przed ruchem</h3>
+                <p>Typowa siłownia Cię przytłacza. Szukasz spokoju i profesjonalizmu.</p>
+            </div>
+            <div class="target-card">
+                <h3>Inwestujesz w zdrowie</h3>
+                <p>Traktujesz zdrowie jak inwestycję. Szukasz eksperta, nie "motywatora".</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="process">
+        <h2 class="section-title">System 5 Kroków</h2>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="process-number">1</div>
+                <h3>Diagnoza</h3>
+                <p>Wywiad, testy funkcjonalne</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">2</div>
+                <h3>Naprawa wzorców</h3>
+                <p>Uczenie poprawnych ruchów</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">3</div>
+                <h3>Stabilizacja</h3>
+                <p>Budowanie kontroli</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">4</div>
+                <h3>Progresja siłowa</h3>
+                <p>Dodawanie obciążenia</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">5</div>
+                <h3>Samodzielność</h3>
+                <p>Trenujesz bezpiecznie sam</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Gotowy/a na zmianę?</h2>
+        <button class="btn btn-primary" onclick="openModal()">Ankieta diagnostyczna</button>
+    </section>
+
+    <footer class="footer">
+        <p><strong>Studio Las</strong> – Trening Medyczny</p>
+        <p>Email: kontakt@studio-las.pl</p>
+    </footer>
+
+    <div class="modal" id="diagnosticModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2>Ankieta diagnostyczna</h2>
+            <div id="formSuccess" class="form-success" style="display:none">
+                <strong>Dziękuję!</strong> Skontaktuję się w ciągu 24-48h.
+            </div>
+            <form id="diagnosticForm">
+                <div class="form-group">
+                    <label>Imię i nazwisko *</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon *</label>
+                    <input type="tel" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Główny problem *</label>
+                    <textarea name="problem" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Wyślij</button>
+            </form>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
