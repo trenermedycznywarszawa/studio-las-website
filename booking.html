@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umów konsultację - Studio Las</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .booking-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+            margin-top: 70px;
+        }
+        .booking-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .booking-header h1 {
+            color: var(--forest-dark);
+            margin-bottom: 1rem;
+        }
+        .booking-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--forest-medium);
+        }
+        .booking-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .time-slot {
+            padding: 1rem;
+            border: 2px solid var(--sand);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .time-slot:hover {
+            border-color: var(--forest-medium);
+            background: rgba(45, 90, 70, 0.05);
+        }
+        .time-slot.selected {
+            background: var(--forest-medium);
+            color: white;
+            border-color: var(--forest-dark);
+        }
+        .time-slot.unavailable {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Studio Las</a>
+            <button class="nav-toggle" id="navToggle">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="index.html#for-whom">Dla kogo</a></li>
+                <li><a href="booking.html">Umów konsultację</a></li>
+                <li><a href="profile.html">👤 Profil</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="booking-container">
+        <div class="booking-header">
+            <h1>Umów konsultację wstępną</h1>
+            <p style="color: var(--text-light); font-size: 1.1rem;">Pierwsza konsultacja trwa 60 minut. Poznamy się, omówię Twój cel i zaproponuję plan współpracy.</p>
+        </div>
+
+        <div class="booking-info">
+            <h3 style="color: var(--forest-dark); margin-bottom: 1rem;">📍 Ważne informacje</h3>
+            <ul style="list-style-position: inside; color: var(--text-dark);">
+                <li>Konsultacja bezpłatna dla nowych klientów</li>
+                <li>Lokalizacja: Prace Duże (okolice Warszawy)</li>
+                <li>Możliwość konsultacji online (Zoom)</li>
+                <li>Anulacja: minimum 24h wcześniej</li>
+            </ul>
+        </div>
+
+        <div class="booking-form">
+            <div id="bookingSuccess" class="form-success" style="display:none">
+                <strong>✅ Rezerwacja potwierdzona!</strong><br>
+                Otrzymasz potwierdzenie na email w ciągu 15 minut.
+            </div>
+
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label>Imię i nazwisko *</label>
+                    <input type="text" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Telefon *</label>
+                    <input type="tel" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Wybierz dzień *</label>
+                    <input type="date" name="date" required id="dateInput">
+                </div>
+
+                <div class="form-group">
+                    <label>Wybierz godzinę *</label>
+                    <div class="time-slots" id="timeSlots">
+                        <div class="time-slot" data-time="09:00">09:00</div>
+                        <div class="time-slot" data-time="10:30">10:30</div>
+                        <div class="time-slot" data-time="12:00">12:00</div>
+                        <div class="time-slot" data-time="14:00">14:00</div>
+                        <div class="time-slot" data-time="15:30">15:30</div>
+                        <div class="time-slot" data-time="17:00">17:00</div>
+                    </div>
+                    <input type="hidden" name="time" id="selectedTime" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Rodzaj konsultacji *</label>
+                    <select name="type" required>
+                        <option value="">Wybierz</option>
+                        <option value="onsite">W studio (Prace Duże)</option>
+                        <option value="online">Online (Zoom)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Krótki opis problemu</label>
+                    <textarea name="notes" placeholder="Opcjonalnie - napisz, z czym się zmagasz"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Zarezerwuj termin</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p><strong>Studio Las</strong> – Trening Medyczny</p>
+        <p>Email: kontakt@studio-las.pl | Tel: +48 123 456 789</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Set min date to today
+        const dateInput = document.getElementById('dateInput');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        // Time slot selection
+        const timeSlots = document.querySelectorAll('.time-slot');
+        const selectedTimeInput = document.getElementById('selectedTime');
+
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', () => {
+                if (!slot.classList.contains('unavailable')) {
+                    timeSlots.forEach(s => s.classList.remove('selected'));
+                    slot.classList.add('selected');
+                    selectedTimeInput.value = slot.dataset.time;
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (!selectedTimeInput.value) {
+                alert('Proszę wybrać godzinę');
+                return;
+            }
+
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // Store booking
+            const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            bookings.push({
+                ...data,
+                id: Date.now(),
+                createdAt: new Date().toISOString(),
+                status: 'pending'
+            });
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+            
+            // Show success
+            document.getElementById('bookingSuccess').style.display = 'block';
+            e.target.style.display = 'none';
+            
+            console.log('Booking created:', data);
+        });
+    </script>
+</body>
+</html>
